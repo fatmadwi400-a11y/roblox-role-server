@@ -1,9 +1,6 @@
-cat > server.js << 'SELESAI'
 require('dotenv').config();
-
 const express = require('express');
 const mongoose = require('mongoose');
-
 const app = express();
 app.use(express.json());
 
@@ -21,7 +18,7 @@ const Player = mongoose.model('Player', playerSchema);
 
 function checkSecret(req, res) {
     if (req.headers['x-api-key'] !== process.env.SECRET_KEY) {
-        res.status(403).json({ error: "Akses ditolak! Secret key salah." });
+        res.status(403).json({ error: "Akses ditolak!" });
         return false;
     }
     return true;
@@ -70,4 +67,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log("Server jalan di port " + PORT);
 });
-SELESAI
